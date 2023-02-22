@@ -43,7 +43,16 @@ void Task54MatrixRowsSort()
 {
     Console.Clear();
 
- 
+    int[,] matrix = ArrayHandler.GetRandomMatrix(ConsoleIOHandler.ReadInt("number of rows"),
+                                                    ConsoleIOHandler.ReadInt("number of columns"),
+                                                        0, 9);
+                                            
+    System.Console.WriteLine(ArrayHandler.MatrixToString(matrix));
+    System.Console.WriteLine();
+
+    ArrayHandler.SortMatrixRows(matrix, false);
+
+    System.Console.WriteLine(ArrayHandler.MatrixToString(matrix));
 }
 #endregion
 

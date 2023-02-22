@@ -105,6 +105,36 @@ namespace MyArrays
 
             return result;
         }
+
+        public static void SortMatrixRows(int[,] matrix, bool ascending = true)
+        {
+            int rowLenght = matrix.GetLength(1);
+            int temp = 0;
+
+            for (int i = 0; i < matrix.GetLength(0); i++)
+            {
+                int numOfSorted = 0;
+
+                while (numOfSorted < rowLenght - 1)
+                {
+                    int currPos = 0;
+                    
+                    for (int j = 1; j < rowLenght - numOfSorted; j++)
+                        if (ascending && matrix[i, j] > matrix[i, currPos])
+                            currPos = j;
+                        else if (!ascending && matrix[i, j] < matrix[i, currPos])
+                            currPos = j;
+                    
+                    temp = matrix[i, currPos];
+                    matrix[i, currPos] = matrix[i, rowLenght - numOfSorted - 1];
+                    matrix[i, rowLenght - numOfSorted - 1] = temp;
+
+                    numOfSorted++;
+                }
+            }
+                 
+        }
+
     }
     #endregion
 }
