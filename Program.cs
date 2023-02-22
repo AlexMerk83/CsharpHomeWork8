@@ -67,7 +67,19 @@ void Task54MatrixRowsSort()
 void Task56RowOfMatrixWithMinSum()
 {
     Console.Clear();
+
+    int[,] matrix = ArrayHandler.GetRandomMatrix(ConsoleIOHandler.ReadInt("number of rows"),
+                                                    ConsoleIOHandler.ReadInt("number of columns"),
+                                                        0, 9);
+                                            
+    System.Console.WriteLine(ArrayHandler.MatrixToString(matrix));
+    System.Console.WriteLine();
     
+    int minSumRow = ArrayHandler.GetMinAndMaxElementsPositions(ArrayHandler.SumMatrixRows(matrix))[0];
+    
+    System.Console.WriteLine($"Number of the row with the minimum sum of elements is {minSumRow+1}");
+
+    System.Console.WriteLine(ArrayHandler.MatrixToString(matrix, row: minSumRow));
 
 }
 #endregion

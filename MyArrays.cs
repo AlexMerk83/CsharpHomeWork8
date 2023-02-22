@@ -67,6 +67,20 @@ namespace MyArrays
             return arrMinMax;
         }
 
+        public static int[] GetMinAndMaxElementsPositions(int[] array)
+        {
+            int[] arrMinMaxPos = new int[2];
+
+            arrMinMaxPos[0] = 0;
+            arrMinMaxPos[1] = 0;
+
+            for (int i = 1; i < array.Length; i++)
+                if (array[i] < array[arrMinMaxPos[0]]) arrMinMaxPos[0] = i;
+                else if (array[i] > array[arrMinMaxPos[1]]) arrMinMaxPos[1] = i;
+
+            return arrMinMaxPos;
+        } 
+
         public static int[,] GetRandomMatrix(int rowsNumber, int columnsNumber, int minVal = -10, int maxVal = 10)
         {
             int[,] result = new int[rowsNumber, columnsNumber];
@@ -91,13 +105,13 @@ namespace MyArrays
             return result;
         }
 
-        public static string MatrixToString<T>(T[,] matrix)
+        public static string MatrixToString<T>(T[,] matrix, int row = -1, int col = -1)
         {
             string result = string.Empty;
 
-            for (int i = 0; i < matrix.GetLength(0); i++)
+            for (int i = (row == -1 ? 0 : row); i < (row == -1 ? matrix.GetLength(0) : row + 1); i++)
             {
-                for (int j = 0; j < matrix.GetLength(1); j++)
+                for (int j = (col == -1 ? 0 : col); j < (col == -1 ? matrix.GetLength(1) : col + 1); j++)
                     result += $"{matrix[i, j]} ";
 
                 result += Environment.NewLine;
@@ -118,7 +132,7 @@ namespace MyArrays
                 while (numOfSorted < rowLenght - 1)
                 {
                     int currPos = 0;
-                    
+
                     for (int j = 1; j < rowLenght - numOfSorted; j++)
                         if (ascending && matrix[i, j] > matrix[i, currPos])
                             currPos = j;
@@ -133,6 +147,17 @@ namespace MyArrays
                 }
             }
                  
+        }
+
+        public static int[] SumMatrixRows (int[,] matrix)
+        {
+            int[] result = new int[matrix.GetLength(0)];
+
+            for (int i = 0; i < result.Length; i++)
+                for (int j = 0; j < matrix.GetLength(1); j++)
+                    result[i] += matrix[i, j];
+
+            return result;
         }
 
     }
