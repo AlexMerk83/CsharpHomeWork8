@@ -95,8 +95,27 @@ void Task56RowOfMatrixWithMinSum()
 void Task58MatrixMultiplication()
 {
     Console.Clear();
-
     
+    System.Console.WriteLine("Enter the dimensions of the first matrix");
+    int matrix1RowNum = ConsoleIOHandler.ReadInt("number of rows");
+    int matrix1ColNum = ConsoleIOHandler.ReadInt("number of columns");
+    int matrix2RowNum = ConsoleIOHandler.ReadInt("number of rows");
+    int matrix2ColNum = ConsoleIOHandler.ReadInt("number of columns");
+
+    if (matrix1ColNum != matrix2RowNum)
+    {
+        System.Console.WriteLine("These matrices cannot be multiplied.");
+        System.Console.WriteLine("Two matrices can be multiplied if the number of columns in the first matrix is equal to the number of rows in the second matrix.");
+        return;
+    }
+
+    int[,] matrix1 = ArrayHandler.GetRandomMatrix(matrix1RowNum, matrix1ColNum, 0, 9);
+    int[,] matrix2 = ArrayHandler.GetRandomMatrix(matrix2RowNum, matrix2ColNum, 0, 9);
+    
+    System.Console.WriteLine(ArrayHandler.MatrixToString(matrix1));
+    System.Console.WriteLine(ArrayHandler.MatrixToString(matrix2));
+    System.Console.WriteLine(ArrayHandler.MatrixToString(ArrayHandler.MultiplyMatrices(matrix1, matrix2)));
+
 }
 #endregion
 

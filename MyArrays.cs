@@ -160,6 +160,25 @@ namespace MyArrays
             return result;
         }
 
+        public static int[,] MultiplyMatrices(int[,] matrix1, int[,] matrix2)
+        {
+            int matrix1RowNum = matrix1.GetLength(0);
+            int matrix1ColNum = matrix1.GetLength(1);
+            int matrix2RowNum = matrix2.GetLength(0);
+            int matrix2ColNum = matrix2.GetLength(1);
+
+            if (matrix1ColNum != matrix2RowNum)
+                return new int [1,1];
+
+            int[,] multMatrix = new int[matrix1RowNum, matrix2ColNum];
+
+            for (int i = 0; i < matrix1RowNum; i++)
+                for (int j = 0; j < matrix2ColNum; j++)
+                    for (int k = 0; k < matrix1ColNum; k++)
+                        multMatrix[i, j] += matrix1[i, k] * matrix2[k, j];
+        
+        return multMatrix;
+        }
     }
     #endregion
 }
