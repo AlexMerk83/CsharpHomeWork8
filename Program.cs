@@ -132,7 +132,59 @@ void Task60Print3DArrayWithUniqueNumbers()
 {
     Console.Clear();
 
+    int numOfDigits = 2;
+
+    System.Console.WriteLine($"Enter the dimensions of a 3D array to be filled wtih unique random {numOfDigits}-digit integer numbers");
+
+    int dim1 = ConsoleIOHandler.ReadInt("dimension 1", 1, 100);
+    int dim2 = ConsoleIOHandler.ReadInt("dimension 2", 1, 100);
+    int dim3 = ConsoleIOHandler.ReadInt("dimension 3", 1, 100);
+
+    if (dim1 * dim2 * dim3 > 9 * Math.Pow(10, numOfDigits - 1))
+    {
+        System.Console.WriteLine("The number of elements of the array exceeds the number of possible unique values.");
+        System.Console.WriteLine("The array cannot be created.");
+        return;
+    }
+
+    Random rnd = new Random();
+
+    int[,,] array3d = new int [dim1, dim2, dim3];
+    int filledCount = 0;
+
+    for (int i = 0; i < array3d.GetLength(0); i++)
+        for (int j = 0; j < array3d.GetLength(1); j++)
+            for (int k = 0; k < array3d.GetLength(2); k++)
+            {
+                array3d[i, j, k] = rnd.Next((int)Math.Pow(10, numOfDigits - 1), (int)Math.Pow(10, numOfDigits));
+                
+                while (filledCount > 0 && FindNum(array3d, filledCount, array3d[i, j, k]))
+                    array3d[i, j, k] = rnd.Next((int)Math.Pow(10, numOfDigits - 1), (int)Math.Pow(10, numOfDigits));
+
+                filledCount++;
+            }
+
+    System.Console.WriteLine(ArrayHandler.array3dToString(array3d));
 }
+
+bool FindNum(int[,,] array3d, int searchLmit, int numToFind)
+{
+    int i = 0,
+        j = 0,
+        k = 0,
+        checkedCount = 0;
+
+    for (i = 0; i < array3d.GetLength(0); i++)
+        for (j = 0; j < array3d.GetLength(1); j++)
+            for (k = 0; k < array3d.GetLength(2) && checkedCount < searchLmit; k++)
+                if (array3d[i, j, k] == numToFind)
+                    return true;
+                else
+                    checkedCount++;
+
+    return false;
+}
+
 #endregion
 
 #region Task62 Matrix Spiral Fill

@@ -179,6 +179,28 @@ namespace MyArrays
         
         return multMatrix;
         }
+
+        public static string array3dToString(int[,,] array3d)
+        {
+            string res = string.Empty;
+
+            for (int i = 0; i < array3d.GetLength(0); i++)
+            {
+                for (int j = 0; j < array3d.GetLength(1); j++)
+                {
+                    for (int k = 0; k < array3d.GetLength(2); k++)
+                        res += $"{array3d[i, j, k]}({i}, {j}, {k}) ";
+                    
+                    res+= Environment.NewLine;
+                }
+
+                res+= Environment.NewLine;
+            }
+
+            return res;
+        }
+
     }
+
     #endregion
 }
