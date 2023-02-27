@@ -198,5 +198,51 @@ void Task62MatrixSpiralFill()
 {
     Console.Clear();
 
+    int [,] matrix = new int[ConsoleIOHandler.ReadInt("number of rows"), ConsoleIOHandler.ReadInt("number of columns")];
+
+    FillSpiral(matrix, 1, 0, 0, 1);
+
+    System.Console.WriteLine(ArrayHandler.MatrixToString(matrix));
+
 }
+
+void FillSpiral(int[,] matrix, int num, int startRow, int startCol, byte direction)
+{
+    matrix[startRow, startCol] = num;
+
+    switch (direction)
+    {
+        case 1:
+            if (startCol + 1 < matrix.GetLength(1) && matrix[startRow, startCol + 1] == 0)
+                FillSpiral(matrix, num + 1, startRow, startCol + 1, 1);
+            else if (startRow + 1 < matrix.GetLength(0) && matrix[startRow + 1, startCol] == 0)
+                FillSpiral(matrix, num + 1, startRow + 1, startCol, 2);
+            else return;
+            break;
+        case 2:
+            if (startRow + 1 < matrix.GetLength(0) && matrix[startRow + 1, startCol] == 0)
+                FillSpiral(matrix, num + 1, startRow + 1, startCol, 2);
+            else if (startCol - 1 >= 0 && matrix[startRow, startCol - 1] == 0)
+                FillSpiral(matrix, num + 1, startRow, startCol - 1, 3);
+            else return;
+            break;
+        case 3:
+            if (startCol - 1 >= 0 && matrix[startRow, startCol - 1] == 0)
+                FillSpiral(matrix, num + 1, startRow, startCol - 1, 3);
+            else if (startRow - 1 >= 0 && matrix[startRow - 1, startCol] == 0)
+                FillSpiral(matrix, num + 1, startRow - 1, startCol, 4);
+            else return;
+            break;            
+        case 4:
+            if (startRow - 1 >= 0 && matrix[startRow - 1, startCol] == 0)
+                FillSpiral(matrix, num + 1, startRow - 1, startCol, 4);
+            else if (startCol + 1 < matrix.GetLength(1) && matrix[startRow, startCol + 1] == 0)
+                FillSpiral(matrix, num + 1, startRow, startCol + 1, 1);
+            else return;
+            break;
+        default: return;              
+    }
+}
+
+
 #endregion
