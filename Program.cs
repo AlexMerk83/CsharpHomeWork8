@@ -7,11 +7,13 @@ void main()
 {
     bool isWork = true;
 
+    ConsoleIOHandler consIO = new ConsoleIOHandler();
+
     while (isWork)
     {
-        ConsoleIOHandler.PrintMainMenu();
+        consIO.PrintMainMenu();
 
-        int taskNo = ConsoleIOHandler.ReadInt("a task number", 0, 5, ConsoleIOHandler.msgNoSuchOption);
+        int taskNo = consIO.ReadInt("a task number", 0, 5, consIO.msgNoSuchOption);
 
         switch (taskNo)
         {
@@ -21,11 +23,11 @@ void main()
             case 4: Task60Print3DArrayWithUniqueNumbers(); break;
             case 5: Task62MatrixSpiralFill(); break;
             case 0: isWork = false; break;
-            default: System.Console.WriteLine(ConsoleIOHandler.msgNoSuchOption); break;
+            default: System.Console.WriteLine(consIO.msgNoSuchOption); break;
         }
 
         if (isWork)
-            ConsoleIOHandler.WaitForAnyKey();
+            consIO.WaitForAnyKey();
     }
 }
 
@@ -41,18 +43,25 @@ void main()
 // 8 4 4 2
 void Task54MatrixRowsSort()
 {
+    ConsoleIOHandler consIO = new ConsoleIOHandler();
+    ArrayHandler arrHndl = new ArrayHandler();
+
     Console.Clear();
 
-    int[,] matrix = ArrayHandler.GetRandomMatrix(ConsoleIOHandler.ReadInt("number of rows"),
-                                                    ConsoleIOHandler.ReadInt("number of columns"),
+    System.Console.WriteLine("Enter parameters of the matrix to generate");
+
+    int[,] matrix = arrHndl.GetRandomMatrix(consIO.ReadInt("number of rows"),
+                                                    consIO.ReadInt("number of columns"),
                                                         0, 9);
                                             
-    System.Console.WriteLine(ArrayHandler.MatrixToString(matrix));
+    System.Console.WriteLine("Generated matrix:");
+    System.Console.WriteLine(arrHndl.MatrixToString(matrix));
     System.Console.WriteLine();
 
-    ArrayHandler.SortMatrixRows(matrix, false);
+    arrHndl.SortMatrixRows(matrix, false);
 
-    System.Console.WriteLine(ArrayHandler.MatrixToString(matrix));
+    System.Console.WriteLine("The matrix with sortd rows:");
+    System.Console.WriteLine(arrHndl.MatrixToString(matrix));
 }
 #endregion
 
@@ -66,20 +75,25 @@ void Task54MatrixRowsSort()
 // Программа считает сумму элементов в каждой строке и выдаёт номер строки с наименьшей суммой элементов: 1 строка
 void Task56RowOfMatrixWithMinSum()
 {
+    ConsoleIOHandler consIO = new ConsoleIOHandler();
+    ArrayHandler arrHndl = new ArrayHandler();
+
     Console.Clear();
 
-    int[,] matrix = ArrayHandler.GetRandomMatrix(ConsoleIOHandler.ReadInt("number of rows"),
-                                                    ConsoleIOHandler.ReadInt("number of columns"),
+    System.Console.WriteLine("Enter parameters of the matrix to generate");
+    int[,] matrix = arrHndl.GetRandomMatrix(consIO.ReadInt("number of rows"),
+                                                    consIO.ReadInt("number of columns"),
                                                         0, 9);
-                                            
-    System.Console.WriteLine(ArrayHandler.MatrixToString(matrix));
+
+    System.Console.WriteLine("Generated matrix:");                                        
+    System.Console.WriteLine(arrHndl.MatrixToString(matrix));
     System.Console.WriteLine();
     
-    int minSumRow = ArrayHandler.GetMinAndMaxElementsPositions(ArrayHandler.SumMatrixRows(matrix))[0];
+    int minSumRow = arrHndl.GetMinAndMaxElementsPositions(arrHndl.SumMatrixRows(matrix))[0];
     
     System.Console.WriteLine($"Number of the row with the minimum sum of elements is {minSumRow+1}");
 
-    System.Console.WriteLine(ArrayHandler.MatrixToString(matrix, row: minSumRow));
+    System.Console.WriteLine(arrHndl.MatrixToString(matrix, row: minSumRow));
 
 }
 #endregion
@@ -94,13 +108,16 @@ void Task56RowOfMatrixWithMinSum()
 // 15 18
 void Task58MatrixMultiplication()
 {
+    ConsoleIOHandler consIO = new ConsoleIOHandler();
+    ArrayHandler arrHndl = new ArrayHandler();
+
     Console.Clear();
     
     System.Console.WriteLine("Enter the dimensions of the first matrix");
-    int matrix1RowNum = ConsoleIOHandler.ReadInt("number of rows");
-    int matrix1ColNum = ConsoleIOHandler.ReadInt("number of columns");
-    int matrix2RowNum = ConsoleIOHandler.ReadInt("number of rows");
-    int matrix2ColNum = ConsoleIOHandler.ReadInt("number of columns");
+    int matrix1RowNum = consIO.ReadInt("number of rows");
+    int matrix1ColNum = consIO.ReadInt("number of columns");
+    int matrix2RowNum = consIO.ReadInt("number of rows");
+    int matrix2ColNum = consIO.ReadInt("number of columns");
 
     if (matrix1ColNum != matrix2RowNum)
     {
@@ -109,12 +126,12 @@ void Task58MatrixMultiplication()
         return;
     }
 
-    int[,] matrix1 = ArrayHandler.GetRandomMatrix(matrix1RowNum, matrix1ColNum, 0, 9);
-    int[,] matrix2 = ArrayHandler.GetRandomMatrix(matrix2RowNum, matrix2ColNum, 0, 9);
+    int[,] matrix1 = arrHndl.GetRandomMatrix(matrix1RowNum, matrix1ColNum, 0, 9);
+    int[,] matrix2 = arrHndl.GetRandomMatrix(matrix2RowNum, matrix2ColNum, 0, 9);
     
-    System.Console.WriteLine(ArrayHandler.MatrixToString(matrix1));
-    System.Console.WriteLine(ArrayHandler.MatrixToString(matrix2));
-    System.Console.WriteLine(ArrayHandler.MatrixToString(ArrayHandler.MultiplyMatrices(matrix1, matrix2)));
+    System.Console.WriteLine(arrHndl.MatrixToString(matrix1));
+    System.Console.WriteLine(arrHndl.MatrixToString(matrix2));
+    System.Console.WriteLine(arrHndl.MatrixToString(arrHndl.MultiplyMatrices(matrix1, matrix2)));
 
 }
 #endregion
@@ -130,15 +147,18 @@ void Task58MatrixMultiplication()
 // 26(1,0,1) 55(1,1,1)
 void Task60Print3DArrayWithUniqueNumbers()
 {
+    ConsoleIOHandler consIO = new ConsoleIOHandler();
+    ArrayHandler arrHndl = new ArrayHandler();
+
     Console.Clear();
 
     int numOfDigits = 2;
 
     System.Console.WriteLine($"Enter the dimensions of a 3D array to be filled wtih unique random {numOfDigits}-digit integer numbers");
 
-    int dim1 = ConsoleIOHandler.ReadInt("dimension 1", 1, 100);
-    int dim2 = ConsoleIOHandler.ReadInt("dimension 2", 1, 100);
-    int dim3 = ConsoleIOHandler.ReadInt("dimension 3", 1, 100);
+    int dim1 = consIO.ReadInt("dimension 1", 1, 100);
+    int dim2 = consIO.ReadInt("dimension 2", 1, 100);
+    int dim3 = consIO.ReadInt("dimension 3", 1, 100);
 
     if (dim1 * dim2 * dim3 > 9 * Math.Pow(10, numOfDigits - 1))
     {
@@ -164,7 +184,7 @@ void Task60Print3DArrayWithUniqueNumbers()
                 filledCount++;
             }
 
-    System.Console.WriteLine(ArrayHandler.array3dToString(array3d));
+    System.Console.WriteLine(arrHndl.array3dToString(array3d));
 }
 
 bool FindNum(int[,,] array3d, int searchLmit, int numToFind)
@@ -196,13 +216,17 @@ bool FindNum(int[,,] array3d, int searchLmit, int numToFind)
 // 10 09 08 07
 void Task62MatrixSpiralFill()
 {
+    ConsoleIOHandler consIO = new ConsoleIOHandler();
+    ArrayHandler arrHndl = new ArrayHandler();
+
     Console.Clear();
 
-    int [,] matrix = new int[ConsoleIOHandler.ReadInt("number of rows"), ConsoleIOHandler.ReadInt("number of columns")];
+    System.Console.WriteLine("Enter the dimensions of the matrix to be filled spirraly");
+    int [,] matrix = new int[consIO.ReadInt("number of rows"), consIO.ReadInt("number of columns")];
 
     FillSpiral(matrix, 1, 0, 0, 1);
 
-    System.Console.WriteLine(ArrayHandler.MatrixToString(matrix));
+    System.Console.WriteLine(arrHndl.MatrixToString(matrix));
 
 }
 

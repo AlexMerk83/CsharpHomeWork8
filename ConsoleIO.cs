@@ -5,11 +5,11 @@ namespace ConsoleIO
     {
         #region Output Support Methods
 
-        public const string msgAnyKeyRequest = "Press any key to continue...";
-        public const string msgNoSuchOption = "There is no such option. Try again.";
+        public string msgAnyKeyRequest = "Press any key to continue...";
+        public string msgNoSuchOption = "There is no such option. Try again.";
 
 
-        public static void PrintMainMenu()
+        public void PrintMainMenu()
         {
             Console.Clear();
 
@@ -22,14 +22,14 @@ namespace ConsoleIO
             System.Console.WriteLine("0 - Exit");
         }
 
-        public static void WaitForAnyKey()
+        public void WaitForAnyKey()
         {
             System.Console.WriteLine();
             System.Console.WriteLine(msgAnyKeyRequest);
             Console.ReadKey();
         }
 
-        public static void ClearLine(int lineShift = 0, bool keepCursor = true)
+        public void ClearLine(int lineShift = 0, bool keepCursor = true)
         {
             int currentTop = Console.CursorTop,
                 currentLeft = Console.CursorLeft;
@@ -51,7 +51,7 @@ namespace ConsoleIO
         private const string defaultRangeErrorMessage = "Input error. Please enter an integer number from the range {0}..{1}.";
         public const string defaultDoubleErrorMessage = "Input error. Please enter a real number.";
 
-        public static int ReadInt(string argument)
+        public int ReadInt(string argument)
         {
             int parsedNum = 0,
                 inputFieldX = 0,
@@ -74,7 +74,7 @@ namespace ConsoleIO
             return parsedNum;
         }
 
-        public static int ReadInt(string argument, int minValue, int maxValue, string errorMessage = defaultRangeErrorMessage)
+        public int ReadInt(string argument, int minValue, int maxValue, string errorMessage = defaultRangeErrorMessage)
         {
             int parsedNum = 0,
                 inputFieldX = 0,
@@ -97,7 +97,7 @@ namespace ConsoleIO
             return parsedNum;
         }
 
-        public static double ReadDouble(string argument)
+        public double ReadDouble(string argument)
         {
             double parsedNum = 0.0;
             int inputFieldX = 0,

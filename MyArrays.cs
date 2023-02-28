@@ -3,7 +3,7 @@ namespace MyArrays
     #region Array Methods
     class ArrayHandler
     {
-        public static int[] GetRandomArray(int length, int minVal, int maxVal)
+        public int[] GetRandomArray(int length, int minVal, int maxVal)
         {
             int[] arr = new int[length];
 
@@ -15,7 +15,7 @@ namespace MyArrays
             return arr;           
         }
 
-        public static double[] GetRandomArray(int length, double minVal, double maxVal)
+        public double[] GetRandomArray(int length, double minVal, double maxVal)
         {
             double[] arr = new double[length];
 
@@ -27,7 +27,7 @@ namespace MyArrays
             return arr;         
         }
 
-        public static string ArrayToString<T>(T[] array, string separator = " ")
+        public string ArrayToString<T>(T[] array, string separator = " ")
         {
             string result = string.Empty;
 
@@ -39,7 +39,7 @@ namespace MyArrays
             return result;
         }
 
-        public static int[] GetMinAndMaxElements(int[] array)
+        public int[] GetMinAndMaxElements(int[] array)
         {
             int[] arrMinMax = new int[2];
 
@@ -53,7 +53,7 @@ namespace MyArrays
             return arrMinMax;
         } 
 
-        public static double[] GetMinAndMaxElements(double[] array)
+        public double[] GetMinAndMaxElements(double[] array)
         {
             double[] arrMinMax = new double[2];
 
@@ -67,7 +67,7 @@ namespace MyArrays
             return arrMinMax;
         }
 
-        public static int[] GetMinAndMaxElementsPositions(int[] array)
+        public int[] GetMinAndMaxElementsPositions(int[] array)
         {
             int[] arrMinMaxPos = new int[2];
 
@@ -81,7 +81,7 @@ namespace MyArrays
             return arrMinMaxPos;
         } 
 
-        public static int[,] GetRandomMatrix(int rowsNumber, int columnsNumber, int minVal = -10, int maxVal = 10)
+        public int[,] GetRandomMatrix(int rowsNumber, int columnsNumber, int minVal = -10, int maxVal = 10)
         {
             int[,] result = new int[rowsNumber, columnsNumber];
             Random rand = new Random();
@@ -93,7 +93,7 @@ namespace MyArrays
             return result;
         }
 
-        public static double[,] GetRandomMatrix(int rowsNumber, int columnsNumber, double minVal = -10, double maxVal = 10, int roundDigits = 2)
+        public double[,] GetRandomMatrix(int rowsNumber, int columnsNumber, double minVal = -10, double maxVal = 10, int roundDigits = 2)
         {
             double[,] result = new double[rowsNumber, columnsNumber];
             Random rand = new Random();
@@ -105,7 +105,7 @@ namespace MyArrays
             return result;
         }
 
-        public static string MatrixToString<T>(T[,] matrix, int row = -1, int col = -1)
+        public string MatrixToString<T>(T[,] matrix, int row = -1, int col = -1)
         {
             string result = string.Empty;
 
@@ -120,7 +120,7 @@ namespace MyArrays
             return result;
         }
 
-        public static void SortMatrixRows(int[,] matrix, bool ascending = true)
+        public void SortMatrixRows(int[,] matrix, bool ascending = true)
         {
             int rowLenght = matrix.GetLength(1);
             int temp = 0;
@@ -149,7 +149,7 @@ namespace MyArrays
                  
         }
 
-        public static int[] SumMatrixRows (int[,] matrix)
+        public int[] SumMatrixRows (int[,] matrix)
         {
             int[] result = new int[matrix.GetLength(0)];
 
@@ -160,7 +160,7 @@ namespace MyArrays
             return result;
         }
 
-        public static int[,] MultiplyMatrices(int[,] matrix1, int[,] matrix2)
+        public int[,] MultiplyMatrices(int[,] matrix1, int[,] matrix2)
         {
             int matrix1RowNum = matrix1.GetLength(0);
             int matrix1ColNum = matrix1.GetLength(1);
@@ -180,7 +180,7 @@ namespace MyArrays
         return multMatrix;
         }
 
-        public static string array3dToString(int[,,] array3d)
+        public string array3dToString(int[,,] array3d)
         {
             string res = string.Empty;
 
