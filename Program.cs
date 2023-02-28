@@ -55,13 +55,13 @@ void Task54MatrixRowsSort()
                                                         0, 9);
                                             
     System.Console.WriteLine("Generated matrix:");
-    System.Console.WriteLine(arrHndl.MatrixToString(matrix));
+    System.Console.WriteLine(arrHndl.MatrixToAlignedString(matrix));
     System.Console.WriteLine();
 
     arrHndl.SortMatrixRows(matrix, false);
 
-    System.Console.WriteLine("The matrix with sortd rows:");
-    System.Console.WriteLine(arrHndl.MatrixToString(matrix));
+    System.Console.WriteLine("The matrix with sorted rows:");
+    System.Console.WriteLine(arrHndl.MatrixToAlignedString(matrix));
 }
 #endregion
 
@@ -86,14 +86,14 @@ void Task56RowOfMatrixWithMinSum()
                                                         0, 9);
 
     System.Console.WriteLine("Generated matrix:");                                        
-    System.Console.WriteLine(arrHndl.MatrixToString(matrix));
+    System.Console.WriteLine(arrHndl.MatrixToAlignedString(matrix));
     System.Console.WriteLine();
     
     int minSumRow = arrHndl.GetMinAndMaxElementsPositions(arrHndl.SumMatrixRows(matrix))[0];
     
     System.Console.WriteLine($"Number of the row with the minimum sum of elements is {minSumRow+1}");
 
-    System.Console.WriteLine(arrHndl.MatrixToString(matrix, row: minSumRow));
+    System.Console.WriteLine(arrHndl.MatrixToAlignedString(matrix, row: minSumRow));
 
 }
 #endregion
@@ -116,6 +116,7 @@ void Task58MatrixMultiplication()
     System.Console.WriteLine("Enter the dimensions of the first matrix");
     int matrix1RowNum = consIO.ReadInt("number of rows");
     int matrix1ColNum = consIO.ReadInt("number of columns");
+    System.Console.WriteLine("Enter the dimensions of the second matrix");
     int matrix2RowNum = consIO.ReadInt("number of rows");
     int matrix2ColNum = consIO.ReadInt("number of columns");
 
@@ -129,9 +130,9 @@ void Task58MatrixMultiplication()
     int[,] matrix1 = arrHndl.GetRandomMatrix(matrix1RowNum, matrix1ColNum, 0, 9);
     int[,] matrix2 = arrHndl.GetRandomMatrix(matrix2RowNum, matrix2ColNum, 0, 9);
     
-    System.Console.WriteLine(arrHndl.MatrixToString(matrix1));
-    System.Console.WriteLine(arrHndl.MatrixToString(matrix2));
-    System.Console.WriteLine(arrHndl.MatrixToString(arrHndl.MultiplyMatrices(matrix1, matrix2)));
+    System.Console.WriteLine(arrHndl.MatrixToAlignedString(matrix1));
+    System.Console.WriteLine(arrHndl.MatrixToAlignedString(matrix2));
+    System.Console.WriteLine(arrHndl.MatrixToAlignedString(arrHndl.MultiplyMatrices(matrix1, matrix2)));
 
 }
 #endregion
@@ -226,7 +227,7 @@ void Task62MatrixSpiralFill()
 
     FillSpiral(matrix, 1, 0, 0, 1);
 
-    System.Console.WriteLine(arrHndl.MatrixToString(matrix));
+    System.Console.WriteLine(arrHndl.MatrixToAlignedString(matrix, filler: '0'));
 
 }
 

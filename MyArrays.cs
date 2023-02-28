@@ -39,6 +39,23 @@ namespace MyArrays
             return result;
         }
 
+        public string ArrayToString<T>(T[] array, string separator = " ", char filler = ' ')
+        {
+            string result = string.Empty;
+            int maxElementLength = 0;
+            
+            for (int i = 0; i < array.Length; i++)
+                if (array[i].ToString().Length > maxElementLength)
+                    maxElementLength = array[i].ToString().Length;
+
+            for (int i = 0; i < array.Length; i++)
+                result += array[i].ToString().PadRight(maxElementLength, filler) + separator;
+            
+            result += Environment.NewLine;
+
+            return result;
+        }
+
         public int[] GetMinAndMaxElements(int[] array)
         {
             int[] arrMinMax = new int[2];
@@ -113,6 +130,29 @@ namespace MyArrays
             {
                 for (int j = (col == -1 ? 0 : col); j < (col == -1 ? matrix.GetLength(1) : col + 1); j++)
                     result += $"{matrix[i, j]} ";
+
+                result += Environment.NewLine;
+            }
+
+            return result;
+        }
+
+        public string MatrixToAlignedString<T>(T[,] matrix, int row = -1, int col = -1, string separator = " ", char filler = ' ')
+        {
+            string result = string.Empty;
+            int maxElementLength = 0;
+
+            for (int i = (row == -1 ? 0 : row); i < (row == -1 ? matrix.GetLength(0) : row + 1); i++)
+            {
+                for (int j = (col == -1 ? 0 : col); j < (col == -1 ? matrix.GetLength(1) : col + 1); j++)
+                    if (matrix[i, j].ToString().Length > maxElementLength)
+                        maxElementLength = matrix[i, j].ToString().Length;
+            }
+
+            for (int i = (row == -1 ? 0 : row); i < (row == -1 ? matrix.GetLength(0) : row + 1); i++)
+            {
+                for (int j = (col == -1 ? 0 : col); j < (col == -1 ? matrix.GetLength(1) : col + 1); j++)
+                    result += matrix[i, j].ToString().PadLeft(maxElementLength, filler) + separator;
 
                 result += Environment.NewLine;
             }
